@@ -1,0 +1,10 @@
+/* AppContainer.css */
+
+.AppContainer {
+    max-height: 100vh; /* Set maximum height of the container */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+  }
+  
+
+  

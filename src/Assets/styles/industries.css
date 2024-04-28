@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color1: #0a1e27;
+  --secondary-color1: #e9c675;
+  --text-light1: #cbd5e1;
+  --white1: #ffffff;
+  --max-width1: 1200px;
+  --header1-font1: "Playfair Display", serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.section1__container {
+  max-width: var(--max-width1);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section1__subheader {
+  position: relative;
+  isolation: isolate;
+  padding-top: 60px;
+  margin-bottom: 1rem;
+  padding-left: 5rem;
+  
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--secondary-color1);
+}
+
+
+
+
+.section1__header {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 400;
+  font-family: var(--header1-font1);
+  color: var(--white1);
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.header1 {
+  position: relative;
+  height: 100vh;
+}
+
+.header1::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 15rem);
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0),
+      var(--primary-color1)
+    ),
+    url("../images/Industries_1.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: translateZ(0);
+}
+
+
+.header1__container {
+  position: relative;
+  isolation: isolate;
+  height: calc(100% - 75px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header1__content {
+  max-width: 700px;
+}
+
+.header1__content .section1__header {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 5rem;
+}
+
+.header1__content a {
+  color: var(--white1);
+}
+
+.header1__content a:hover {
+  color: var(--secondary-color1);
+}
+
+
+.about1 {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    var(--primary-color1) 8rem
+  );
+  overflow: hidden;
+}
+
+.about1__container {
+  padding-top: 80px;
+  display: grid;
+  gap: 10rem 2rem;
+  overflow: hidden;
+}
+
+
+.about1__content p {
+  margin-bottom: 1.5rem;
+  color: var(--text-light1);
+  padding-top: 40px;
+}
+
+.about1__content a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--secondary-color1);
+}
+
+.about1__content a span {
+  transition: 0.3s;
+}
+
+.about1__content a:hover span {
+  transform: translateX(10px);
+}
+
+
+
+
