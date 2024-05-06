@@ -1,72 +1,98 @@
-import React, { useState, useEffect} from 'react';
-import logo from '../Assets/images/NyK.png'; // Import your logo image
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'; // Import brand icons
+import React, { useState, useEffect, useRef } from "react";
 
 
+import "react-toastify/dist/ReactToastify.css";
 
-import home1 from '../Assets/images/home_1.jpg';
-import home2 from '../Assets/images/home_2.jpg';
+import logo from "../Assets/images/NyK.png"; // Import your logo image
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+
+import "../Assets/styles/global.css";
+
+import slider2 from "../Assets/images/services_2.jpg";
+
+import img6 from "../Assets/images/img6.jpg";
 
 
-import img6 from '../Assets/images/img6.jpg';
-import aws from '../Assets/images/aws-partners.jpg';
-import azure from '../Assets/images/azure.png';
-import googlecloud from '../Assets/images/googlecloud.jpg';
+import "../Assets/styles/footer.css";
 
+import { Link } from "react-router-dom";
 
-import '../Assets/styles/index.css';
-import '../Assets/styles/carousel.css';
-import '../Assets/styles/footer.css';
-import '../Assets/styles/header.css';
-import '../Assets/styles/MidSection.css';
+function Eligibility() {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
-import { Link } from 'react-router-dom';
+  const [selectedPGSubject, setSelectedPGSubject] = useState('');
+  const [stream, setStream] = useState('');
+  const [ugSubject, setUGSubject] = useState('');
+  const [phdResearch, setPhdResearch] = useState('');
 
-function Partners() {
-    const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [visible, setVisible] = useState(true);
-    
-    
-    
-   
+  const handleStreamChange = (event) => {
+    setStream(event.target.value);
+  };
 
-    useEffect(() => {
-     
+  const handleUGSubjectChange = (event) => {
+    setUGSubject(event.target.value);
+  };
 
-        const handleScroll = () => {
-            const currentScrollPos = window.pageYOffset;
-            const isVisible = currentScrollPos < prevScrollPos || currentScrollPos < 10;
-         
-            setVisible(isVisible);
-           
-            setPrevScrollPos(currentScrollPos);
-            
-        };
+  const handlePhdResearchChange = (event) => {
+    setPhdResearch(event.target.value);
+  };
 
-        window.addEventListener('scroll', handleScroll);
+const handlePGSubjectChange = (e) => {
+  const value = e.target.value;
+  setSelectedPGSubject(value);
+};
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [prevScrollPos]);
+const [message, setMessage] = useState('');
+  const form = useRef();
 
-    const handleLogoClick = () => {
-        // Redirect to the home page
-        window.location.href = '/';
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(form.current);
+    const work = formData.get('Work');
+
+    let newMessage = '';
+    if (work === '0-5+') {
+      newMessage = 'Congratulations! You are eligible for NyKinSky Associative Office.';
+    } else if (work === '5+') {
+      newMessage = 'Congratulations! You are eligible for NyKinSky Consultant Office.';
+    } else if (work === '10+') {
+      newMessage = 'Congratulations! You are eligible for NyKinSky Project Office.';
+    } else if (work === '15+') {
+      newMessage = 'Congratulations! You are eligible for NyKinSky Regional Office.';
+    } 
+
+    setMessage(newMessage);
+  };
+  
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const isVisible =
+        currentScrollPos < prevScrollPos || currentScrollPos < 10;
+
+      setVisible(isVisible);
+
+      setPrevScrollPos(currentScrollPos);
     };
 
-    const handleLinkClick = () => {
-      // Reload the page before navigating
-      window.location.reload();
-  };
-    
+    window.addEventListener("scroll", handleScroll);
 
-    
-    return (
-        <div>
-        
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  const handleLogoClick = () => {
+    // Redirect to the home page
+    window.location.href = "/";
+  };
+
+  return (
+    <div>
         <nav className='nav1 navbar-scrolled' style={{ visibility: visible ? 'visible' : 'hidden', backgroundColor:'#312f36',position: 'fixed', width: '100%', zIndex: '1000' }}>
       <div className="wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="logo" onClick={handleLogoClick}>
@@ -227,16 +253,15 @@ function Partners() {
 
   
   </nav>
-  <div style={{ height: '115px' }}></div>
+      <div style={{ height: "115px" }}></div>
 
-
-  <div className="">
-            {/* list Items */}
-            <div className="list">
-                {/* Slider items */}
-                <div className="item active">
-                    <img src={img6} alt="Slider" />
-                    {/*<div className="content">
+      <div className="slider">
+        {/* list Items */}
+        <div className="list">
+          {/* Slider items */}
+          <div className="item active">
+            <img src={slider2} alt="Slider" />
+            {/*<div className="content">
                         <p>design</p>
                         <h2>Slider 01</h2>
                         <p>
@@ -244,114 +269,151 @@ function Partners() {
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
                         </p>
     </div>*/}
-                </div>
-              {/*  <div className="item">
-                    <img src={slider1} alt="Slider" />
-                    <div className="content">
-                        <p>design</p>
-                        <h2>Slider 01</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
-                        </p>
-    </div>
-                </div>*/}
+          </div>
+        </div>
+      </div>
 
-               {/* <div className="item">
-                    <img src={slider3} alt="Slider " />
-                    <div className="content">
-                        <p>design</p>
-                        <h2>Slider 01</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
-                        </p>
-    </div>
-                </div>*/}
-                
+      <div className="global-lite">
+        <div className="global">
+          <main className="row">
+            {/* Left Section */}
+            <section className="col left">
+              {/* Title */}
+              <div className="contactTitle">
+                <h2>Plese Check Your Eligibility First </h2>
+                <p>
+                  NyKinSky & Company - Back Office Outsourcing Franchise
+                  Opportunity
+                </p>
+              </div>
+
+
+              <div className="inputGroup fullWidth">
+              <Link to="/join-global-office">
+                 <button>Go Back And Apply</button>
+              </Link>
+                </div>
+
+            </section>
+
+            {/* Right Section */}
+            <section className="col right">
+              {/* Form */}
+
+              <form ref={form} onSubmit={handleSubmit} className="messageForm">
                
-            </div>
-            
-           
-          
+                <div className="inputGroup fullWidth">
+                  <select name="education" id="education" required>
+                    <option value="">Education Qualification</option>
+                    <option value="Graduate">Graduate
+                    </option>
+                    <option value="Post-Graduate">Post-Graduate</option>
+                    <option value="Phd">Phd</option>
+                  </select>
+                </div>
+
+                <div className="inputGroup fullWidth">
+  <select name="stream" id="stream" required onChange={handleStreamChange}>
+    <option value="">Stream</option>
+    <option value="Finance">Finance (CA/CFA)</option>
+    <option value="IT">IT (Development/Project)</option>
+    <option value="Analytics">Analytics (DS/AI/ML)</option>
+    <option value="Management">Management</option>
+    <option value="Arts">Arts</option>
+    <option value="Others">Others</option>
+  </select>
+</div>
+{stream === 'Others' && (
+  <div className="inputGroup fullWidth">
+    <input type="text" name="streamOther" placeholder="Enter other stream" required />
+  </div>
+)}
+
+<div className="inputGroup fullWidth">
+  <select name="dropdown2" id="state" required onChange={handleUGSubjectChange}>
+    <option value="">UG Subject</option>
+    <option value="Computer-Science">Computer Science</option>
+    <option value="Information-Technology">Information Technology</option>
+    <option value="Electrical-Engineering">Electrical Engineering</option>
+    <option value="Finance">Finance</option>
+    <option value="Business-Administration">Business Administration</option>
+    <option value="Others">Others</option>
+  </select>
+</div>
+{ugSubject === 'Others' && (
+  <div className="inputGroup fullWidth">
+    <input type="text" name="ugSubjectOther" placeholder="Enter other UG subject" required />
+  </div>
+)}
+
+               
+
+
+                <div className="inputGroup fullWidth">
+                    <select name="dropdown2" id="state" required onChange={handlePGSubjectChange}>
+                       <option value="">PG Subject</option>
+                     <option value="Graduate">Computer Science</option>
+                     <option value="Artificial-Intelligence">Artificial Intelligence</option>
+                     <option value="Machine-Learning">Machine Learning</option>
+                      <option value="Data-Science">Data Science</option>
+                     <option value="Marketing Strategy">Marketing Strategy</option>
+                    <option value="Other">Other</option>
+                   </select>
+                </div>
+               {selectedPGSubject === 'Other' && (
+                <div className="inputGroup fullWidth">
+                <input type="text" name="otherPGSubject" placeholder="Enter Other PG Subject" />
+                </div>
+                )}
+
+<div className="inputGroup fullWidth">
+  <select name="dropdown2" id="state" required onChange={handlePhdResearchChange}>
+    <option value="">PHD Research</option>
+    <option value="Computer-Science-Engineering">Computer Science and Engineering</option>
+    <option value="Electrical-and-Electronics-Engineering">Electrical and Electronics Engineering</option>
+    <option value="Mechanical-Engineering">Mechanical Engineering</option>
+    <option value="Civil-Environmental-Engineering">Civil and Environmental Engineering</option>
+    <option value="Others">Others</option>
+  </select>
+</div>
+{phdResearch === 'Others' && (
+  <div className="inputGroup fullWidth">
+    <input type="text" name="phdResearchOther" placeholder="Enter other PHD research" required />
+  </div>
+)}
+
+
+
+
+<div className="inputGroup fullWidth">
+          <select name="Work" required>
+            <option value="">Work Experience</option>
+            <option value="0-5+">0-5+</option>
+            <option value="5+">5+</option>
+            <option value="10+">10+</option>
+            <option value="15+">15+</option>
+          </select>
         </div>
 
-        <div id="main-section2" className="landing-page-main mid-section sky-red-background">
-<div className="left-aligned" style={{ paddingLeft: '20px', paddingTop: '50px' }}>
-  <h6 style={{ marginBottom: '10px', textAlign: 'center'}}><b> NyKinSky Partners</b></h6>
-  <h2 style={{ margin: '0' ,paddingBottom:'30px'}}><b>Strategic alliance partners</b></h2>
-
-</div>
-<div className="landing-page-cards-container">
-  <div className="place-card-container">
-    <div className="image-container">
-      <img
-        alt="London"
-        src={aws}
-        className="place-card-image"
-      />
-
-    </div>
-    <div className="place-card-container1">
-      <span className="place-card-text"><span>AWS</span></span>
-      <span className="place-card-text1">
-        <span>
-          NyKinSky's digital transformation strategy blends human expertise with technical capabilities to kick business transformation for various companies into gear—and keep the momentum going.
-        </span>
-      </span>
-    </div>
-  </div>
-  <div className="place-card-container">
-    <div className="image-container">
-      <img
-        alt="Rome"
-        src={azure}
-        className="place-card-image"
-      />
-
-    </div>
-    <div className="place-card-container1">
-      <span className="place-card-text"><span>Azure</span></span>
-      <span className="place-card-text1">
-        <span>
-          If you're looking to elevate your customer experiences or build new products, we’re ready to help you deliver on your vision at speed, cost, and scale. Led by a team of technologists and engineers, we’ll productize your ideas.
-        </span>
-      </span>
-    </div>
-  </div>
-  <div className="place-card-container">
-    <div className="image-container">
-      <img
-        alt="Cluj-Napoca"
-        src={googlecloud}
-        className="place-card-image"
-      />
-
-    </div>
-    <div className="place-card-container1">
-      <span className="place-card-text"><span>Google Cloud</span></span>
-      <span className="place-card-text1">
-        <span>
-          We deliver swift, sustainable solutions, so you can empower your people, improve your processes and transform your technology in a safe, secure environment.
-        </span>
-      </span>
-    </div>
-  </div>
-  
-</div>
-</div>
+            
+                <div className="inputGroup fullWidth">
+                  <input type="text" name="from_name" required />
+                  <label>Your Interested Stream</label>
+                </div>
 
 
-     
+                <div className="inputGroup fullWidth">
+                  <button>Check</button>
+                </div>
 
+              </form>
+               {message && <p>{message}</p>}
+            </section>
+          </main>
+        </div>
+      </div>
 
-    
-   
-   
-
-
-            {/* Footer Section */}
-            <footer class="footer"  >
+      <footer class="footer"  >
     <div class="container" >
       <div class="row">
 
@@ -410,7 +472,7 @@ function Partners() {
           
           </ul>
         </div>
-        <div class="footer-col"  onClick={handleLinkClick}  >
+        <div class="footer-col"  >
           <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
@@ -442,8 +504,8 @@ function Partners() {
         </div>
       </div>
  </footer>
-        </div>
-    );
+    </div>
+  );
 }
 
-export default Partners;
+export default Eligibility;

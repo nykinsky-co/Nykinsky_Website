@@ -169,6 +169,8 @@ function ServiceApplication() {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -204,28 +206,21 @@ function ServiceApplication() {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-<li style={{ marginRight: '20px' }}>
-    <Link
-        to="/join-global-office"
-        style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            textDecoration: 'none',
-            padding: '1px 20px',
-            borderRadius: '8px',
-            backgroundColor: '#ff6600',
-            transition: 'background-color 0.3s ease-in-out',
-            display: 'inline-block',
-            marginBottom: '20px',
-        }}
-    >
-        &#x1F680; Join Global Office
-    </Link>
-</li>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
 
   
@@ -275,7 +270,7 @@ function ServiceApplication() {
           <br/>
             <h1><b>Create and execute apps with AI at its core</b></h1>
             <br/>
-          <p className='para'>Today's enterprises require AI applications that are flexible. With its Application Engineering services, NyKinSky Analytics can enable this by providing cross-platform, cloud-native, modular applications for your AI/ML engines. When creating web and mobile applications, our team of skilled software engineers uses cloud-first development methodologies and agile engineering techniques. 
+          <p className='para' style={{textAlign:'justify'}}>Today's enterprises require AI applications that are flexible. With its Application Engineering services, NyKinSky Analytics can enable this by providing cross-platform, cloud-native, modular applications for your AI/ML engines. When creating web and mobile applications, our team of skilled software engineers uses cloud-first development methodologies and agile engineering techniques. 
           These clever user interfaces aid in bridging the knowledge gap between corporate users and insights.
           </p>
         </div>
@@ -301,7 +296,7 @@ function ServiceApplication() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>Design and prototyping guided by UX</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white', textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup">In order to better understand user behavior and chart the path they take when interacting with the product, we assist in improving user experiences.</td>   
                                 </tr>
                             </table>
@@ -314,7 +309,7 @@ function ServiceApplication() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>Low- and no-code software</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white',  textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup"  >
                                     When necessary, we develop power apps with little or no coding. These can be used to automate graphical user interfaces and procedures that integrate with pre-built application components. Applications ranging from personalized dashboards to AI-integrated goods are among them.</td>   
                                 </tr>
@@ -328,7 +323,7 @@ function ServiceApplication() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>Agile application engineering can provide you a competitive advantage.</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white', textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup">Our approach to creating intelligent digital applications involves utilizing agile engineering techniques, selecting components and technology stacks that closely match your enterprise architecture, keeping a human-centered design, and conducting frequent reviews with end users to integrate modifications in an organized way.</td>   
                                 </tr>
                             </table>
@@ -349,34 +344,82 @@ function ServiceApplication() {
 
 
             {/* Footer Section */}
-            <footer class="footer" >
-    <div class="container">
+            <footer class="footer" onClick={handleLinkClick} >
+    <div class="container" >
       <div class="row">
-        <div class="footer-col">
-          <h4>company</h4>
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
           <ul>
-            <li><Link to="#">our services</Link></li>
-            <li><Link to="#">privacy policy</Link></li>
-            <li><Link to="#">affiliate program</Link></li>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
           </ul>
         </div>
-        <div class="footer-col"  onClick={handleLinkClick}  >
-          <h4>about us</h4>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
+          <ul>
+            <li><Link to="/Services-AI">our services</Link></li>
+            <li><Link to="#">privacy policy</Link></li>
+          
+          </ul>
+        </div>
+        <div class="footer-col"  >
+          <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
             <li><Link to="/about-us">Our Journey & Story </Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Careers</h4>
+          <h4 style={{margin:'20px'}}>Careers</h4>
           <ul>
             <li><Link to="#">Explore opportunities</Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>follow us</h4>
-          <div className="social-links">
-             
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
+      
               <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>
             </div>

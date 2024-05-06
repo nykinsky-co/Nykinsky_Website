@@ -8,12 +8,13 @@ import { faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'; 
 import img6 from '../Assets/images/img6.jpg';
 
 
-import img1 from '../Assets/images/what.png';
+import img1 from '../Assets/images/text.jpg';
 
 
 import '../Assets/styles/whatwedo.css';
 import myVideo from '../Assets/videos/What_we_do.mp4';
 
+import Slider from '../MyComponents/Slider';
 import { Link } from 'react-router-dom';
 
 const Whatwedo = () => {
@@ -143,6 +144,8 @@ const handleLinkClick = () => {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -178,28 +181,21 @@ const handleLinkClick = () => {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-<li style={{ marginRight: '20px' }}>
-    <Link
-        to="/join-global-office"
-        style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            textDecoration: 'none',
-            padding: '1px 20px',
-            borderRadius: '8px',
-            backgroundColor: '#ff6600',
-            transition: 'background-color 0.3s ease-in-out',
-            display: 'inline-block',
-            marginBottom: '20px',
-        }}
-    >
-        &#x1F680; Join Global Office
-    </Link>
-</li>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
 
   
@@ -227,12 +223,12 @@ const handleLinkClick = () => {
           <h1><b>Artificial Intelligence Services</b></h1>
           <hr />
           <br/>
-          <p className='para'>
+          <p className='para' style={{textAlign:'justify'}}>
             With NykinSky & Company AI Solutions, you may revolutionize your business with carefully crafted solutions tailored to your unique needs. Our morally sound, diligent, and perceptive approach ensures confidentiality and unbiased models,
              trustworthy implementations, and concrete, accurate, and useful findings.</p>
           <br/>
         
-          <p className='para'>
+          <p className='para' style={{textAlign:'justify'}}>
           With 14 years of experience in developing and delivering solutions that go beyond technology, NykinSky & Company is ideally positioned to offer premium, 
           custom solutions that are in line with each company's unique character.
           </p>
@@ -289,6 +285,9 @@ const handleLinkClick = () => {
         </div>
       </div>
     </div>
+    <div style={{paddingBottom:'50px'}}></div>
+
+  
 
 
 
@@ -298,11 +297,59 @@ const handleLinkClick = () => {
 
 
          {/* Footer Section */}
-         <footer class="footer" >
-    <div class="container">
+         <footer class="footer"  >
+    <div class="container" >
       <div class="row">
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
+          <ul>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
+          </ul>
+        </div>
+
         <div class="footer-col">
-          <h4>company</h4>
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
           <ul>
             <li><Link to="/Services-AI">our services</Link></li>
             <li><Link to="#">privacy policy</Link></li>
@@ -310,21 +357,21 @@ const handleLinkClick = () => {
           </ul>
         </div>
         <div class="footer-col"  onClick={handleLinkClick}  >
-          <h4>about us</h4>
+          <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
             <li><Link to="/about-us">Our Journey & Story </Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Careers</h4>
+          <h4 style={{margin:'20px'}}>Careers</h4>
           <ul>
             <li><Link to="#">Explore opportunities</Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>follow us</h4>
-          <div className="social-links">
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
       
               <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>

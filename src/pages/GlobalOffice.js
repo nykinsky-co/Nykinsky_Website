@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
+import jsPDF from "jspdf";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import logo from "../Assets/images/NyK.png"; // Import your logo image
@@ -22,29 +24,13 @@ import "../Assets/styles/footer.css";
 
 import { Link } from "react-router-dom";
 
-function GlobalOffice() {
+const GlobalOffice = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [selectedState, setSelectedState] = useState('');
+  const [cities, setCities] = useState([]);
 
   const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm("service_j2rqpsc", "template_zgoufh4", form.current, {
-        publicKey: "AUzOi6othbTEQL-NC",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
-          window.location.reload();
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,9 +55,103 @@ function GlobalOffice() {
     window.location.href = "/";
   };
 
+  const handleStateChange = (e) => {
+    const state = e.target.value;
+    setSelectedState(state);
+    // Here you would fetch cities based on the selected state
+    // For demonstration purposes, I'll simulate fetching cities
+    // Replace this with your actual logic to fetch cities
+    const fetchedCities = fetchCitiesForState(state);
+    setCities(fetchedCities);
+  };
+
+  const fetchCitiesForState = (state) => {
+    
+    const stateCities = {
+      'Andaman and Nicobar Islands': ['Port Blair'],
+      'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur'],
+      'Arunachal Pradesh': ['Itanagar', 'Naharlagun'],
+      Assam: ['Guwahati', 'Dibrugarh', 'Silchar'],
+      Bihar: ['Patna', 'Gaya', 'Bhagalpur'],
+      Chandigarh: ['Chandigarh'],
+      Chhattisgarh: ['Raipur', 'Bilaspur', 'Durg'],
+      'Dadra and Nagar Haveli': ['Silvassa'],
+      'Daman and Diu': ['Daman', 'Diu'],
+      Delhi: ['New Delhi', 'Noida', 'Gurgaon'],
+      Goa: ['Panaji', 'Madgaon'],
+      Gujarat: ['Ahmedabad', 'Surat', 'Vadodara'],
+      Haryana: ['Faridabad', 'Gurgaon', 'Panipat'],
+      'Himachal Pradesh': ['Shimla', 'Manali', 'Dharamshala'],
+      'Jammu and Kashmir': ['Srinagar', 'Jammu'],
+      Jharkhand: ['Ranchi', 'Jamshedpur', 'Dhanbad'],
+      Karnataka: ['Bangalore', 'Mysore', 'Hubballi'],
+      Kerala: ['Thiruvananthapuram', 'Kochi', 'Kozhikode'],
+      Ladakh: ['Leh', 'Kargil'],
+      Lakshadweep: ['Kavaratti'],
+      'Madhya Pradesh': ['Bhopal', 'Indore', 'Jabalpur'],
+      Maharashtra: ['Mumbai', 'Pune', 'Nagpur'],
+      Manipur: ['Imphal'],
+      Meghalaya: ['Shillong'],
+      Mizoram: ['Aizawl'],
+      Nagaland: ['Kohima'],
+      Odisha: ['Bhubaneswar', 'Cuttack', 'Rourkela'],
+      Puducherry: ['Puducherry', 'Karaikal'],
+      Punjab: ['Chandigarh', 'Ludhiana', 'Amritsar'],
+      Rajasthan: ['Jaipur', 'Udaipur', 'Jodhpur', 'Kota'],
+      Sikkim: ['Gangtok'],
+      'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
+      Telangana: ['Hyderabad', 'Warangal', 'Nizamabad'],
+      Tripura: ['Agartala'],
+      'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi'],
+      Uttarakhand: ['Dehradun', 'Haridwar', 'Rishikesh'],
+      'West Bengal': ['Kolkata', 'Asansol', 'Durgapur'],
+    };
+    return stateCities[state] || [];
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form.current);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+     // Generate PDF
+     const doc = new jsPDF();
+     doc.text(20, 20, "Form Data:");
+     let yPos = 30;
+     Object.entries(data).forEach(([key, value]) => {
+       doc.text(20, yPos, `${key}: ${value}`);
+       yPos += 10;
+     });
+     
+      // Get the PDF file object
+    const pdfBlob = doc.output("blob");
+
+
+    emailjs
+      .sendForm("service_c0i8nss", "template_asa4895", form.current,  {
+        publicKey: "7cyET3ZpEKy2YdFgj",
+        pdf_attachment: pdfBlob, // Attach the PDF file as "pdf_attachment"
+        
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          window.location.reload();
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
+
   return (
     <div>
-       <nav className='nav1 navbar-scrolled' style={{ visibility: visible ? 'visible' : 'hidden', backgroundColor:'#312f36',position: 'fixed', width: '100%', zIndex: '1000' }}>
+      <nav className='nav1 navbar-scrolled' style={{ visibility: visible ? 'visible' : 'hidden', backgroundColor:'#312f36',position: 'fixed', width: '100%', zIndex: '1000' }}>
       <div className="wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="logo" onClick={handleLogoClick}>
           <img src={logo} alt="NyKinSky Logo" className="logo-image" style={{ width: '80px', height: 'auto', paddingTop: '10px', cursor: 'pointer' }} />
@@ -175,6 +255,8 @@ function GlobalOffice() {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -210,28 +292,21 @@ function GlobalOffice() {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-<li style={{ marginRight: '20px' }}>
-    <Link
-        to="/join-global-office"
-        style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            textDecoration: 'none',
-            padding: '1px 20px',
-            borderRadius: '8px',
-            backgroundColor: '#ff6600',
-            transition: 'background-color 0.3s ease-in-out',
-            display: 'inline-block',
-            marginBottom: '20px',
-        }}
-    >
-        &#x1F680; Join Global Office
-    </Link>
-</li>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
 
   
@@ -298,6 +373,12 @@ function GlobalOffice() {
                   </div>
                 </div>
               </div>
+
+              <div className="inputGroup fullWidth">
+                <Link to="/Eligibility-Check">
+                  <button>Check Your Eligibility</button>
+                </Link>
+              </div>
             </section>
 
             {/* Right Section */}
@@ -307,7 +388,7 @@ function GlobalOffice() {
               <form ref={form} onSubmit={sendEmail} className="messageForm">
                 <div className="inputGroup fullWidth">
                   <select name="dropdown1" id="office" required>
-                    <option value="">Please Select Office</option>
+                    <option value="">Please Select Office<span className="requiredStar" > *</span></option>
                     <option value="NyKinSky Consultant Office ">
                       NyKinSky Consultant Office{" "}
                     </option>
@@ -323,9 +404,9 @@ function GlobalOffice() {
                   </select>
                 </div>
 
-                <div className="inputGroup fullWidth">
-                  <select name="dropdown2" id="state" required>
-                    <option value="">Select State</option>
+                <div className="inputGroup fullWidth ">
+                  <select name="dropdown2" id="state" required onChange={handleStateChange}>
+                    <option value="">Select State<span className="requiredStar" > *</span></option>
                     <option value="Andaman and Nicobar Islands">
                       Andaman and Nicobar Islands
                     </option>
@@ -371,244 +452,167 @@ function GlobalOffice() {
                 </div>
 
                 <div className="inputGroup fullWidth">
-                  <select name="dropdown3" id="city" required>
-                    <option value="">Select City</option>
-                    <option value="Agra">Agra</option>
-                    <option value="Ahmedabad">Ahmedabad</option>
-                    <option value="Ajmer">Ajmer</option>
-                    <option value="Alappuzha">Alappuzha</option>
-                    <option value="Aligarh">Aligarh</option>
-                    <option value="Allahabad">Allahabad</option>
-                    <option value="Alwar">Alwar</option>
-                    <option value="Ambala">Ambala</option>
-                    <option value="Amravati">Amravati</option>
-                    <option value="Amritsar">Amritsar</option>
-                    <option value="Anand">Anand</option>
-                    <option value="Anantapur">Anantapur</option>
-                    <option value="Asansol">Asansol</option>
-                    <option value="Aurangabad">Aurangabad</option>
-                    <option value="Bareilly">Bareilly</option>
-                    <option value="Belagavi">Belagavi</option>
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Bharatpur">Bharatpur</option>
-                    <option value="Bharuch">Bharuch</option>
-                    <option value="Bhilai">Bhilai</option>
-                    <option value="Bhilwara">Bhilwara</option>
-                    <option value="Bhiwandi">Bhiwandi</option>
-                    <option value="Bhopal">Bhopal</option>
-                    <option value="Bhubaneswar">Bhubaneswar</option>
-                    <option value="Bikaner">Bikaner</option>
-                    <option value="Bilaspur">Bilaspur</option>
-                    <option value="Bokaro Steel City">Bokaro Steel City</option>
-                    <option value="Bongaigaon">Bongaigaon</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Chennai">Chennai</option>
-                    <option value="Coimbatore">Coimbatore</option>
-                    <option value="Cuttack">Cuttack</option>
-                    <option value="Daman">Daman</option>
-                    <option value="Dehradun">Dehradun</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Dhanbad">Dhanbad</option>
-                    <option value="Dharamshala">Dharamshala</option>
-                    <option value="Dibrugarh">Dibrugarh</option>
-                    <option value="Dindigul">Dindigul</option>
-                    <option value="Durg">Durg</option>
-                    <option value="Erode">Erode</option>
-                    <option value="Faridabad">Faridabad</option>
-                    <option value="Firozabad">Firozabad</option>
-                    <option value="Gandhinagar">Gandhinagar</option>
-                    <option value="Gangtok">Gangtok</option>
-                    <option value="Gaya">Gaya</option>
-                    <option value="Ghaziabad">Ghaziabad</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gorakhpur">Gorakhpur</option>
-                    <option value="Greater Noida">Greater Noida</option>
-                    <option value="Guntur">Guntur</option>
-                    <option value="Gurgaon">Gurgaon</option>
-                    <option value="Guwahati">Guwahati</option>
-                    <option value="Gwalior">Gwalior</option>
-                    <option value="Haldwani">Haldwani</option>
-                    <option value="Haridwar">Haridwar</option>
-                    <option value="Hisar">Hisar</option>
-                    <option value="Hooghly">Hooghly</option>
-                    <option value="Howrah">Howrah</option>
-                    <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                    <option value="Imphal">Imphal</option>
-                    <option value="Indore">Indore</option>
-                    <option value="Jabalpur">Jabalpur</option>
-                    <option value="Jaipur">Jaipur</option>
-                    <option value="Jalandhar">Jalandhar</option>
-                    <option value="Jammu">Jammu</option>
-                    <option value="Jamnagar">Jamnagar</option>
-                    <option value="Jamshedpur">Jamshedpur</option>
-                    <option value="Jhansi">Jhansi</option>
-                    <option value="Jodhpur">Jodhpur</option>
-                    <option value="Junagadh">Junagadh</option>
-                    <option value="Kakinada">Kakinada</option>
-                    <option value="Kalyan-Dombivali">Kalyan-Dombivali</option>
-                    <option value="Kanpur">Kanpur</option>
-                    <option value="Karaikudi">Karaikudi</option>
-                    <option value="Karnal">Karnal</option>
-                    <option value="Kochi">Kochi</option>
-                    <option value="Kohima">Kohima</option>
-                    <option value="Kolhapur">Kolhapur</option>
-                    <option value="Kolkata">Kolkata</option>
-                    <option value="Kollam">Kollam</option>
-                    <option value="Kota">Kota</option>
-                    <option value="Kottayam">Kottayam</option>
-                    <option value="Kozhikode">Kozhikode</option>
-                    <option value="Kurnool">Kurnool</option>
-                    <option value="Kurukshetra">Kurukshetra</option>
-                    <option value="Latur">Latur</option>
-                    <option value="Lucknow">Lucknow</option>
-                    <option value="Ludhiana">Ludhiana</option>
-                    <option value="Madurai">Madurai</option>
-                    <option value="Maheshtala">Maheshtala</option>
-                    <option value="Malegaon">Malegaon</option>
-                    <option value="Mangalore">Mangalore</option>
-                    <option value="Mathura">Mathura</option>
-                    <option value="Meerut">Meerut</option>
-                    <option value="Mira-Bhayandar">Mira-Bhayandar</option>
-                    <option value="Moradabad">Moradabad</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Muzaffarnagar">Muzaffarnagar</option>
-                    <option value="Muzaffarpur">Muzaffarpur</option>
-                    <option value="Mysore">Mysore</option>
-                    <option value="Nagpur">Nagpur</option>
-                    <option value="Nanded">Nanded</option>
-                    <option value="Nashik">Nashik</option>
-                    <option value="Navi Mumbai">Navi Mumbai</option>
-                    <option value="Nellore">Nellore</option>
-                    <option value="Noida">Noida</option>
-                    <option value="North Dumdum">North Dumdum</option>
-                    <option value="Ongole">Ongole</option>
-                    <option value="Orai">Orai</option>
-                    <option value="Ozhukarai">Ozhukarai</option>
-                    <option value="Pali">Pali</option>
-                    <option value="Panaji">Panaji</option>
-                    <option value="Panipat">Panipat</option>
-                    <option value="Parbhani">Parbhani</option>
-                    <option value="Patiala">Patiala</option>
-                    <option value="Patna">Patna</option>
-                    <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
-                    <option value="Port Blair">Port Blair</option>
-                    <option value="Puducherry">Puducherry</option>
-                    <option value="Pune">Pune</option>
-                    <option value="Purnia">Purnia</option>
-                    <option value="Raipur">Raipur</option>
-                    <option value="Rajahmundry">Rajahmundry</option>
-                    <option value="Rajkot">Rajkot</option>
-                    <option value="Rampur">Rampur</option>
-                    <option value="Ranchi">Ranchi</option>
-                    <option value="Ratlam">Ratlam</option>
-                    <option value="Rewa">Rewa</option>
-                    <option value="Rohtak">Rohtak</option>
-                    <option value="Rourkela">Rourkela</option>
-                    <option value="Sagar">Sagar</option>
-                    <option value="Saharanpur">Saharanpur</option>
-                    <option value="Salem">Salem</option>
-                    <option value="Sambalpur">Sambalpur</option>
-                    <option value="Satara">Satara</option>
-                    <option value="Satna">Satna</option>
-                    <option value="Shillong">Shillong</option>
-                    <option value="Shimla">Shimla</option>
-                    <option value="Siliguri">Siliguri</option>
-                    <option value="Solapur">Solapur</option>
-                    <option value="Sonipat">Sonipat</option>
-                    <option value="Srinagar">Srinagar</option>
-                    <option value="Surat">Surat</option>
-                    <option value="Thane">Thane</option>
-                    <option value="Thanjavur">Thanjavur</option>
-                    <option value="Thiruvananthapuram">
-                      Thiruvananthapuram
-                    </option>
-                    <option value="Thrissur">Thrissur</option>
-                    <option value="Tiruchirappalli">Tiruchirappalli</option>
-                    <option value="Tirunelveli">Tirunelveli</option>
-                    <option value="Tirupati">Tirupati</option>
-                    <option value="Tiruppur">Tiruppur</option>
-                    <option value="Tiruvannamalai">Tiruvannamalai</option>
-                    <option value="Udaipur">Udaipur</option>
-                    <option value="Ujjain">Ujjain</option>
-                    <option value="Ulhasnagar">Ulhasnagar</option>
-                    <option value="Vadodara">Vadodara</option>
-                    <option value="Varanasi">Varanasi</option>
-                    <option value="Vasai-Virar">Vasai-Virar</option>
-                    <option value="Vellore">Vellore</option>
-                    <option value="Vijayawada">Vijayawada</option>
-                    <option value="Visakhapatnam">Visakhapatnam</option>
-                    <option value="Warangal">Warangal</option>
-                    <option value="Yamunanagar">Yamunanagar</option>
-                  </select>
+                <select name="dropdown3" id="city" required>
+            <option value="">Select City<span className="requiredStar" > *</span></option>
+            {cities.map(city => (
+              <option key={city} value={city}>{city}</option>
+            ))}
+          </select>
                 </div>
 
                 <div className="inputGroup halfWidth">
                   <input type="text" name="from_name" required />
-                  <label>Your Name</label>
+                  <label>Your Name<span className="requiredStar" > *</span> </label>
                 </div>
 
                 <div className="inputGroup halfWidth">
                   <input type="email" name="from_email" required />
-                  <label htmlFor="email">Email</label>
-                </div>
-
-                <div
-                  className="inputGroup halfWidth"
-                  style={{ paddingTop: "10px" }}
-                >
-                  <input type="mobile" name="from_mobile" required />
-                  <label htmlFor="mobile">Mobile Number</label>
-                </div>
-
-                <div
-                  className="inputGroup halfWidth"
-                  style={{ paddingTop: "10px" }}
-                >
-                  <input type="text" name="from_quli" required />
-                  <label htmlFor="subject">Highest Qualification</label>
+                  <label htmlFor="email">Email<span className="requiredStar" > *</span></label>
                 </div>
 
                 <div
                   className="inputGroup fullWidth"
                   style={{ paddingTop: "10px" }}
                 >
-                  <input type="text" name="work_exp" required />
-                  <label htmlFor="subject">Work Experience</label>
+                  <input type="mobile" name="from_mobile" required />
+                  <label htmlFor="mobile">Mobile Number<span className="requiredStar" > *</span></label>
                 </div>
 
 
-                
+
+
+                <div style={{ paddingTop: '60px'}}>
+      <h6>Education Qualification<span className="requiredStar" > *</span></h6>
+      <div style={{ paddingTop: '10px', textAlign: 'center' }}>
+        <table style={{ width: '100%', textAlign: 'center', borderCollapse: 'collapse' }}>
+          <tr>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>Education</th>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>Name and Year</th>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>GPA/PERCENTAGE</th>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}>10th Class<span className="requiredStar" > *</span></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text"  name="10th" required /></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text"  name="10th" required /></td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}>12th Class<span className="requiredStar" > *</span></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="12th" required  /></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="12th"  required /></td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}> UG Degree<span className="requiredStar" > *</span></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="ug" required  /></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="ug" required /></td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}> PG Degree<span className="requiredStar" > *</span></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="pg"  required /></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="pg" required  /></td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}>PHD/Research</td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="phd" /></td>
+            <td style={{ border: '1px solid #ccc', padding: '8px' }}><input type="text" name="phd"  /></td>
+          </tr>
+                    </table>
+                  </div>
+                </div>
+
+
+    <div style={{ paddingTop: "60px" }}>
+  <h6>Work Experience<span className="requiredStar" > *</span></h6>
+  <div style={{ paddingTop: "20px", textAlign: "center" }}>
+    <table style={{ width: "100%", textAlign: "center", borderCollapse: "collapse" }}>
+      <tr>
+        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Name of Company</th>
+        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Designation</th>
+        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Location</th>
+        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Domain</th>
+      </tr>
+      <tr>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="name1" placeholder="Name"  required/></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="designation1" placeholder="Designation" required /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="location1" placeholder="Location" required /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="domain1" placeholder="Domain" required  /></td>
+      </tr>
+
+      <tr>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="name1" placeholder="Name"  /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="designation1" placeholder="Designation"  /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="location1" placeholder="Location"/></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="domain1" placeholder="Domain"  /></td>
+      </tr>
+
+      <tr>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="name1" placeholder="Name"  /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="designation1" placeholder="Designation"  /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="location1" placeholder="Location"  /></td>
+        <td style={{ border: "1px solid #ccc", padding: "8px" }}><input type="text" name="domain1" placeholder="Domain"  /></td>
+      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div
+                  className="inputGroup halfWidth"
+                  style={{ paddingTop: "50px" }}
+                >
+                  <input type="text" name="licence" />
+                  <label htmlFor="licence">Any licence</label>
+                </div>
+
+                <div
+                  className="inputGroup halfWidth"
+                  style={{ paddingTop: "50px" }}
+                >
+                  <input type="number" name="licence_no" />
+                  <label htmlFor="number">licence No</label>
+                </div>
+
                 <div
                   className="inputGroup fullWidth"
                   style={{ paddingTop: "10px" }}
                 >
                   <input type="url" name="profile_id" required />
-                  <label htmlFor="subject">Upload your Profile Photo (Drive Link)</label>
+                  <label htmlFor="subject">
+                    Upload your Profile Photo (Drive Link)<span className="requiredStar" > *</span>
+                  </label>
                 </div>
-
-               
 
                 <div
                   className="inputGroup halfWidth"
                   style={{ paddingTop: "10px" }}
                 >
                   <input type="url" name="linkedin_id" required />
-                  <label htmlFor="subject">linkedin Id</label>
+                  <label htmlFor="subject">linkedin Id<span className="requiredStar" > *</span></label>
                 </div>
 
                 <div
                   className="inputGroup halfWidth"
                   style={{ paddingTop: "10px" }}
                 >
-                  <input type="url" name="licence" />
-                  <label htmlFor="subject">Any licence</label>
+                  <select name="working" id="working" required>
+                    <option value="">Already Working?<span className="requiredStar" > *</span></option>
+                    <option value="YES ">YES</option>
+                    <option value="NO">NO</option>
+                  </select>
+                </div>
+
+                <div
+                  className="inputGroup halfWidth"
+                  style={{ paddingTop: "10px" }}
+                >
+                  <input type="text" name="domain" required />
+                  <label htmlFor="subject">Which Domain<span className="requiredStar" > *</span></label>
                 </div>
 
                 <div className="inputGroup fullWidth">
                   <textarea name="message"></textarea>
-                  <label htmlFor="message">Why You Are Interested</label>
+                  <label htmlFor="message">Why You Are Interested<span className="requiredStar" > *</span></label>
                 </div>
+
+   
 
                 <div className="inputGroup fullWidth">
                   <button>Send Message</button>
@@ -619,71 +623,97 @@ function GlobalOffice() {
         </div>
       </div>
 
-      <footer class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="footer-col">
-              <h4>company</h4>
-              <ul>
-                <li>
-                  <Link to="/Services-AI">our services</Link>
-                </li>
-                <li>
-                  <Link to="#">privacy policy</Link>
-                </li>
-              </ul>
+      <footer class="footer"  >
+    <div class="container" >
+      <div class="row">
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
+          <ul>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
+          <ul>
+            <li><Link to="/Services-AI">our services</Link></li>
+            <li><Link to="#">privacy policy</Link></li>
+          
+          </ul>
+        </div>
+        <div class="footer-col"  >
+          <h4 style={{margin:'20px'}}>about us</h4>
+          <ul>
+            <li><Link to="/about-us" >Who we are</Link></li>
+            <li><Link to="/about-us">Our Journey & Story </Link></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Careers</h4>
+          <ul>
+            <li><Link to="#">Explore opportunities</Link></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
+      
+              <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
+              <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>
             </div>
-            <div class="footer-col">
-              <h4>about us</h4>
-              <ul>
-                <li>
-                  <Link to="/about-us">Who we are</Link>
-                </li>
-                <li>
-                  <Link to="/about-us">Our Journey & Story </Link>
-                </li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h4>Careers</h4>
-              <ul>
-                <li>
-                  <Link to="#">Explore opportunities</Link>
-                </li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h4>follow us</h4>
-              <div className="social-links">
-                <Link to="https://www.instagram.com/nykinsky/" target="blank">
-                  <FontAwesomeIcon icon={faInstagram} />
-                </Link>
-                <Link
-                  to="https://www.linkedin.com/company/nykinsky/mycompany/"
-                  target="blank"
-                >
-                  <FontAwesomeIcon icon={faLinkedinIn} />
-                </Link>
-              </div>
-            </div>
+        </div>
+      </div>
+    </div>
+    <hr style={{ borderColor: "white" }} /> {/* Horizontal line with white color */}
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <p style={{ color: "white" }}>&copy; <span style={{ whiteSpace: 'nowrap' }}>{new Date().getFullYear()} NyKinSky & Company. All rights reserved.</span></p>
           </div>
         </div>
-        <hr style={{ borderColor: "white" }} />{" "}
-        {/* Horizontal line with white color */}
-        <div class="container">
-          <div class="row">
-            <div class="footer-col">
-              <p style={{ color: "white" }}>
-                &copy;{" "}
-                <span style={{ whiteSpace: "nowrap" }}>
-                  {new Date().getFullYear()} NyKinSky & Company. All rights
-                  reserved.
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
+ </footer>
     </div>
   );
 }

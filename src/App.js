@@ -51,8 +51,10 @@ import IndustriesMedia from './pages/IndustriesMedia.js';
 
 //Join Global Office
 import GlobalOffice from './pages/GlobalOffice.js';
+import Eligibility from './pages/Eligibility.js';
 
 
+import  Navbar  from './pages/navbar.js';
 
 
 
@@ -63,6 +65,8 @@ import GlobalOffice from './pages/GlobalOffice.js';
 
 //Footer Pages
 import About from '../src/pages/About.js';
+
+
 
 
 
@@ -133,6 +137,9 @@ function App() {
 
 
       <Route exact path="/join-global-office" element={<GlobalOffice/>} />
+      <Route exact path="/Eligibility-Check" element={<Eligibility/>} />
+
+      <Route exact path="/navbar" element={<Navbar/>} />
       
       
 

@@ -141,6 +141,8 @@ const handleLinkClick = () => {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -176,10 +178,23 @@ const handleLinkClick = () => {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
+
   
   </nav>
  
@@ -203,12 +218,12 @@ const handleLinkClick = () => {
           <h1><b>Cloud Services</b></h1>
           <hr />
           <br/>
-          <p className='para'>
+          <p className='para' style={{textAlign:'justify'}}>
           With NyKinSky's cloud-first approach, you can elevate your company while improving client experiences and business success. Our skilled professionals are skilled at creating risk-reduced cloud transformation plans that work in unison with your current business processes. By utilizing our established processes, architectures, frameworks, and wide-ranging partner network, we empower companies to fully utilize the cloud without interfering with their current business operations. Our extensive range of cloud services includes networking, servers, storage, databases, 
           software, analytics, and intelligence. These services promote innovation and long-term development.</p>
           <br/>
         
-          <p className='para'>
+          <p className='para' style={{ textAlign:'justify'}}>
           
 Cloud services deliver numerous business advantages by offering faster turnarounds and pay-per-use models, guaranteeing performance with agility, scalability, and availability. Additionally, they provide customizable, future-ready technology solutions, all on a pay-per-use basis.
           </p>
@@ -292,33 +307,81 @@ Opt for a cloud computing model that provides a proprietary environment exclusiv
 
          {/* Footer Section */}
          <footer class="footer" onClick={handleLinkClick} >
-    <div class="container">
+    <div class="container" >
       <div class="row">
-        <div class="footer-col">
-          <h4>company</h4>
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
           <ul>
-            <li><Link to="#">our services</Link></li>
-            <li><Link to="#">privacy policy</Link></li>
-            <li><Link to="#">affiliate program</Link></li>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
           </ul>
         </div>
-        <div class="footer-col" >
-          <h4>about us</h4>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
+          <ul>
+            <li><Link to="/Services-AI">our services</Link></li>
+            <li><Link to="#">privacy policy</Link></li>
+          
+          </ul>
+        </div>
+        <div class="footer-col"  >
+          <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
             <li><Link to="/about-us">Our Journey & Story </Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Careers</h4>
+          <h4 style={{margin:'20px'}}>Careers</h4>
           <ul>
             <li><Link to="#">Explore opportunities</Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>follow us</h4>
-          <div className="social-links">
-             
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
+      
               <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>
             </div>

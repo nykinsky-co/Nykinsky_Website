@@ -171,6 +171,8 @@ function Home() {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -206,28 +208,21 @@ function Home() {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-<li style={{ marginRight: '20px' }}>
-    <Link
-        to="/join-global-office"
-        style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            textDecoration: 'none',
-            padding: '1px 20px',
-            borderRadius: '8px',
-            backgroundColor: '#ff6600',
-            transition: 'background-color 0.3s ease-in-out',
-            display: 'inline-block',
-            marginBottom: '20px',
-        }}
-    >
-        &#x1F680; Join Global Office
-    </Link>
-</li>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
 
   
@@ -237,44 +232,37 @@ function Home() {
 
     
     <Slider /> 
-    
-   
 
-  
 
             {/* Mid Section */}
-            <div id="main-section1" className="landing-page-main mid-section">
+            <div id="main-section1"  className="landing-page-main mid-section about dark-theme" >
     <div className="left-aligned">
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div className="image-container">
           <img src={home1} alt="Client Impact" className="zoom-image auto-hover" />
         </div>
         <div style={{ flex: '1' }}>
-          <div>
-            <h4><b>WHO WE ARE</b></h4>
+          <div style={{color:'white'}}>
+            <h4 ><b>WHO WE ARE</b></h4>
             <h1><b>Digital is our DNA</b></h1>
             <span>We’re listeners and leaders, working together to take on tomorrow’s challenges.</span>
           </div>
-          <div>
-            <button className="learn-more-btn"><Link to="/about-us" >Learn More </Link><span>&rarr;</span></button>
-          </div>
+         
         </div>
-      </div>    </div>
+      </div>   
+       </div>
   </div>
 
 
             {/* Middle Section 2 */}
-    <div id="main-section" className="landing-page-main mid-section sky-blue-background ">
+    <div id="main-section" className="landing-page-main mid-section dark-theme ">
       <div className="left-aligned" style={{ paddingTop: '50px' }}> {/* Adding padding from the top */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* Centering content */}
           <div style={{ flex: '1', textAlign: 'center' }}> {/* Centering text */}
-            <div className='text'>
+            <div className='text' style={{color:'white'}}>
               <h4><b>OUR APPROACH</b></h4>
               <h1><b>Your journey is our journey</b></h1>
               <span>Discover how we can help your business design and chart the best path forward.</span>
-            </div>
-            <div>
-              <button className="learn-more-btn">Learn More  <span>&rarr;</span></button>
             </div>
           </div>
           <div style={{ flex: '1' }}> {/* Aligning image to the center */}
@@ -289,11 +277,59 @@ function Home() {
 
 
             {/* Footer Section */}
-            <footer class="footer" >
-    <div class="container">
+            <footer class="footer"  >
+    <div class="container" >
       <div class="row">
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
+          <ul>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
+          </ul>
+        </div>
+
         <div class="footer-col">
-          <h4>company</h4>
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
           <ul>
             <li><Link to="/Services-AI">our services</Link></li>
             <li><Link to="#">privacy policy</Link></li>
@@ -301,21 +337,21 @@ function Home() {
           </ul>
         </div>
         <div class="footer-col"  onClick={handleLinkClick}  >
-          <h4>about us</h4>
+          <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
             <li><Link to="/about-us">Our Journey & Story </Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Careers</h4>
+          <h4 style={{margin:'20px'}}>Careers</h4>
           <ul>
             <li><Link to="#">Explore opportunities</Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>follow us</h4>
-          <div className="social-links">
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
       
               <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>

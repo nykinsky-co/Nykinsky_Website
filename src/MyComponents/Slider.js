@@ -9,6 +9,10 @@ import slider2 from '../Assets/images/slider_1.jpg';
 import slider1 from '../Assets/images/slider_2.jpg';
 import slider3 from '../Assets/images/slider_3.jpg';
 
+import company from '../Assets/videos/company.jpg';
+
+import imgHeaderIndustries from '../Assets/images/industries-logistics.jpg';
+
 
 
 
@@ -52,7 +56,7 @@ const Slider = () => {
             <div className="list">
                 {/* Slider items */}
                 <div className="item active">
-                    <img src={slider2} alt="Slider" />
+                    <img src={company} alt="Slider" />
                     {/*<div className="content">
                         <p>design</p>
                         <h2>Slider 01</h2>
@@ -62,28 +66,29 @@ const Slider = () => {
                         </p>
     </div>*/}
                 </div>
-                <div className="item">
+              {/*  <div className="item">
                     <img src={slider1} alt="Slider" />
-                    {/*<div className="content">
+                    <div className="content">
                         <p>design</p>
                         <h2>Slider 01</h2>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
                         </p>
-    </div>*/}
-                </div>
-                <div className="item">
+    </div>
+                </div>*/}
+
+               {/* <div className="item">
                     <img src={slider3} alt="Slider " />
-                    {/*<div className="content">
+                    <div className="content">
                         <p>design</p>
                         <h2>Slider 01</h2>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
                         </p>
-    </div>*/}
-                </div>
+    </div>
+                </div>*/}
                 
                
             </div>
@@ -96,124 +101,57 @@ const Slider = () => {
             </div>*/}
             <div className="processing-line1" id="processing-line-1"></div> {/* Processing line */}
         </div>
+
+
+    
+
+        <section className="about dark-theme" style={{margin:'auto', textAlign:'justify'}}>
+  <div className="about-content"  >
+    <h2>About NyKinSky & Company</h2>
+   <p>At NyKinSky, we are driven by the conviction that with the right blend of expertise and collaborative teamwork, we can tackle a wide array of issues encompassing Business, Social Dynamics, Policy, and Digital Transformation. </p>
+    <p>Each member of our diverse team brings unique insights and specialized knowledge to the table, enabling us to craft innovative solutions and make a tangible impact wherever we engage.</p>
+   
+  </div>
+  
+  <div className="about-image">
+    {/*<img src={slider2} alt="About Image" />*/}
+  </div>
+</section>
         
 
      {/* wht we do section*/}
-        <div>
-        <div className="left-aligned"  style={{textAlign:'center',paddingTop:'80px'}}>
-      <h3 style={{textAlign:'center'}}><b>WHAT WE DO</b></h3>
-      <p>Real transformation demands hard work, persistence, and the right tools for the job. 
-        <br/>For over 14 years, we've redefined craftsmanship and shared our expertise to help our clients succeed.</p>
+     
+     <section className="menu">
+  <h2>WHAT WE DO</h2>
+  <h5 style={{color:'white'}}>Real transformation demands hard work, persistence, and the right tools for the job. 
+    For over 14 years, we've redefined craftsmanship and shared our expertise to help our clients succeed.</h5>
+
+  <div className="menu-items" style={{paddingTop:'40px'}}>
+    {/* Menu items go here */}
+    <div className="menu-item">
+      <img src={imgHeaderIndustries} alt="Burger 1" />
+      <h3>Services & Consulting</h3>
+      <div style={{paddingTop:'10px'}}></div>
+      <p>Aritifical Intelligence(AI)</p>
+      <p>Cloud Transformation</p>
+      <p>Data Engineering</p>
+      <p>Generative AI</p>
+
     </div>
-        <div>
-            
-            <div id="formList">
-                
-                <div id="list">
-                    <div className="item1">
-                        
-                        <div className="content">
-                            <table width="100%" cellSpacing="0">
-                                
+    <div className="menu-item">
+      <img src={imgHeaderIndustries} alt="Burger 2" />
+      <h3>Industries & Differentiate with AI/ML</h3>
+      <div style={{paddingTop:'10px'}}></div>
+      <p>Retail</p>
+      <p>Cpg</p>
+      <p>Bfs</p>
+      <p>Manufacturing</p>
+    </div>
 
-                                <tr>
-                                    <h4 style={{textAlign:'center', color:'red'}}>Services</h4>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Aritifical Intelligence(AI)</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Cloud Transformation</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Data Engineering</td>
-                                </tr>
-
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Generative AI</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-               
-                    <div className="item1">
-                       {/* <img src={img4} alt="Chopper" className="avatar" /> */}
-                        <div className="content">
-                            <table width="100%" cellSpacing="0">
-                                
-                            <tr>
-                                    <h4 style={{textAlign:'center', color:'red'}}>Industries</h4>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Retail</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Cpg</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Bfs</td>
-                                </tr>
-
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Manufacturing</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div className="item1">
-                        {/* <img src={img4} alt="Chopper" className="avatar" /> */}
-                        <div className="content">
-                            <table width="100%" cellSpacing="0">
-                                
-                                      
-                            <tr>
-                                    <h4 style={{textAlign:'center', color:'red'}}>Consulting</h4>
-                                </tr>
-
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Experience Consulting</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Application Engineering</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Business Intelligence</td>
-                                </tr>
-
-                            </table>
-                        </div>
-                    </div>
-                    <div className="item1">
-                        {/* <img src={img4} alt="Chopper" className="avatar" /> */}
-                        <div className="content">
-                            <table width="100%" cellSpacing="0">
-
-                            <tr>
-                                    <h4 style={{textAlign:'center', color:'red'}}>Differentiate with AI/ML  </h4>
-                                </tr>
-
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">Data Science</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">AI Engineering</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan="2" className="nameGroup">ML Products & Platforms</td>
-                                </tr>
-                                
-                                
-                            </table>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        
-          
-        </div>
-        </div>
-
+   
+  </div>
+</section>
+    
 
         
       </div> 

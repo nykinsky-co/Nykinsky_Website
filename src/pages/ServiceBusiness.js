@@ -169,6 +169,8 @@ function ServiceBusiness() {
         <Link to="/our-partners">Our Partners</Link>
       </li>
 
+    
+
 
         <li style={{ marginRight: '20px' }}>
         <Link to="/insights">Insights</Link>
@@ -204,28 +206,21 @@ function ServiceBusiness() {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li>   
+        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }} >
+    <Link to="/join-global-office">Join Global Office</Link>
+    </li>  
+        
+
       </ul>
-      <label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-<li style={{ marginRight: '20px' }}>
-    <Link
-        to="/join-global-office"
-        style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            textDecoration: 'none',
-            padding: '1px 20px',
-            borderRadius: '8px',
-            backgroundColor: '#ff6600',
-            transition: 'background-color 0.3s ease-in-out',
-            display: 'inline-block',
-            marginBottom: '20px',
-        }}
-    >
-        &#x1F680; Join Global Office
-    </Link>
-</li>
+     
+       
+
+
+      
+<label htmlFor="menu-btn" className="btn menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+      
+    
     </div>
 
   
@@ -273,10 +268,10 @@ function ServiceBusiness() {
           <br/>
           <p className='para'>Utilize user-centric BI to transform data analysis and insight development.</p>
           <br/>
-            <h4>When it comes to regulatory difficulties, below-average customer experience, poor business and financial KPIs, and industry-leading performance, 
+            <h4 style={{textAlign:'justify'}}>When it comes to regulatory difficulties, below-average customer experience, poor business and financial KPIs, and industry-leading performance, 
                 business personas with insight to the appropriate metrics at critical decision moments may make all the difference.</h4>
             <br/>
-          <p className='para'>A modern business intelligence (BI) solution takes into account the needs of key stakeholders, the maturity of your data, and the state of your technology ecosystem in order to prioritize the delivery of actionable insights and value generation. 
+          <p className='para' style={{textAlign:'justify'}}>A modern business intelligence (BI) solution takes into account the needs of key stakeholders, the maturity of your data, and the state of your technology ecosystem in order to prioritize the delivery of actionable insights and value generation. 
           In order to enable business users to access and understand data, NyKinSky'S solution places a strong emphasis on user-centric design and execution. 
           This promotes informed decision-making and business growth.
           </p>
@@ -303,7 +298,7 @@ function ServiceBusiness() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>administration, migration, and implementation services</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white',  textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup">New use cases with low-level architecture and upstream and downstream links can be implemented thanks to our services. We assist in creating rationalized reports, creating report migration strategies, and managing the change management program as a whole. We also offer support and administrative services.</td>   
                                 </tr>
                             </table>
@@ -316,7 +311,7 @@ function ServiceBusiness() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>Services for delivering research and insights</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white',  textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup"  >
                                     To assist you in achieving business value, we carry out a variety of proofs of concept and benchmarking services along with beta testing. We offer self-service BI, functional design, UI/UX design, and semantic data layer building for efficient insight delivery.</td>   
                                 </tr>
@@ -330,7 +325,7 @@ function ServiceBusiness() {
                                 <tr>
                                     <td colSpan="2" className="nameGroup" style={{color:'red'}}><b>Knowledge Driven by Artificial Intelligence</b></td>   
                                 </tr>
-                                <tr>
+                                <tr style={{color:'white',  textAlign:'justify'}}>
                                     <td colSpan="2" className="nameGroup">In order to extract context-aware business insights from data, we develop conversational agents. 
                                     These agents create queries in response to business inquiries using LLMs and semantic understanding. These agents create intricate table joins and link numerous data tables to provide the appropriate metrics through the appropriate representations. This promotes decision focus and prevents dashboard fatigue.</td>   
                                 </tr>
@@ -352,34 +347,82 @@ function ServiceBusiness() {
 
 
             {/* Footer Section */}
-            <footer class="footer" >
-    <div class="container">
+            <footer class="footer" onClick={handleLinkClick} >
+    <div class="container" >
       <div class="row">
-        <div class="footer-col">
-          <h4>company</h4>
+
+      <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Services</h4>
           <ul>
-            <li><Link to="#">our services</Link></li>
-            <li><Link to="#">privacy policy</Link></li>
-            <li><Link to="#">affiliate program</Link></li>
+            <li><Link to="/Services-AI">Aritifical Intelligence</Link></li>
+            <li><Link to="/Cloud-Transformation">Cloud Transformation</Link></li>
+            <li><Link to="/Data-Engineering">Data Engineering</Link></li>
+            <li><Link to="/Generative-AI">Generative AI</Link></li>
+            <li><Link to="/Experience-Consulting">Experience Consulting</Link></li>
+            <li><Link to="/Application-Engineering">Application Engineering</Link></li>
+            <li><Link to="/Business-Intelligence">Business Intelligence</Link></li>
+            <li><Link to="/MLOps">MLOps</Link></li>
+            <li><Link to="/Data-Science">Data Science</Link></li>
+            <li><Link to="/AI-Engineering">AI Engineering</Link></li>
+            <li><Link to="/ML-Products & Platforms">ML Products & Platforms</Link></li>
+
           </ul>
         </div>
-        <div class="footer-col"  onClick={handleLinkClick}  >
-          <h4>about us</h4>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Industries</h4>
+          <ul>
+            <li><Link to="/indsutries">Retail</Link></li>
+            <li><Link to="/industries-cpg">CPG</Link></li>
+            <li><Link to="/industries-bfs">bfs</Link></li>
+            <li><Link to="/industries-insurance">Insurance</Link></li>
+            <li><Link to="/industries-Manufacturing">Manufacturing</Link></li>
+            <li><Link to="/industries-Transportation-Logistics">Transportation & Logistics</Link></li>
+            <li><Link to="/industries-Life-Science">Life Science</Link></li>
+            <li><Link to="/industries-Healthcare">HealthCare</Link></li>
+            <li><Link to="/industries-tech-telecom-media">Technology, Telecom & Media</Link></li>
+           
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>Our Approach</h4>
+          <ul>
+            <li><Link to="/approach">Integrated AI/ML Solutions</Link></li>
+            <li><Link to="/approach">Customer Insights Acceleration</Link></li>
+            <li><Link to="/approach">Simulation & Optimization</Link></li>
+            <li><Link to="/approach">Precision Measurement</Link></li>
+            
+
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 style={{margin:'20px'}}>company</h4>
+          <ul>
+            <li><Link to="/Services-AI">our services</Link></li>
+            <li><Link to="#">privacy policy</Link></li>
+          
+          </ul>
+        </div>
+        <div class="footer-col"  >
+          <h4 style={{margin:'20px'}}>about us</h4>
           <ul>
             <li><Link to="/about-us" >Who we are</Link></li>
             <li><Link to="/about-us">Our Journey & Story </Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Careers</h4>
+          <h4 style={{margin:'20px'}}>Careers</h4>
           <ul>
             <li><Link to="#">Explore opportunities</Link></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>follow us</h4>
-          <div className="social-links">
-             
+          <h4 style={{margin:'20px'}}>follow us</h4>
+          <div className="social-links" style={{marginLeft:'10%'}}>
+      
               <Link to="https://www.instagram.com/nykinsky/" target='blank'><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to="https://www.linkedin.com/company/nykinsky/mycompany/" target='blank'><FontAwesomeIcon icon={faLinkedinIn} /></Link>
             </div>
