@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import logo from '../Assets/images/NyK.png'; // Import your logo image
+
+import logo from '../Assets/images/nykinsky-logo.png';// Import your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'; // Import brand icons
@@ -68,9 +69,10 @@ function Home() {
         <div>
         
         <nav className='nav1 navbar-scrolled' style={{ visibility: visible ? 'visible' : 'hidden', backgroundColor:'#312f36',position: 'fixed', width: '100%', zIndex: '1000' }}>
+          
       <div className="wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div className="logo" onClick={handleLogoClick}>
-          <img src={logo} alt="NyKinSky Logo" className="logo-image" style={{ width: '80px', height: 'auto', paddingTop: '10px', cursor: 'pointer' }} />
+        <div className="logo"  onClick={handleLogoClick}>
+          <img src={logo} alt="NyKinSky Logo" className="logo-image" style={{ width: '250px', height: 'auto', paddingTop: '10px', cursor: 'pointer' }} />
         </div>
         <input type="radio" name="slider" id="menu-btn" />
         <input type="radio" name="slider" id="close-btn" />
@@ -208,7 +210,7 @@ function Home() {
           </div>
         </li>
         
-        <li style={{ marginRight: '20px' }}><Link to="#">Careers</Link></li> 
+        <li style={{ marginRight: '20px' }}><a href="http://65.1.65.220/" target='_blank'>Careers</a></li> 
         <li style={{ marginRight: '20px' }} >
     <Link to="/join-global-office">Join Global Office</Link>
     </li>  
@@ -227,6 +229,8 @@ function Home() {
 
   
   </nav>
+
+  
   <div style={{ height: '115px' }}></div>
 
 
@@ -238,7 +242,7 @@ function Home() {
             <div id="main-section1"  className="landing-page-main mid-section about dark-theme" >
     <div className="left-aligned">
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="image-container">
+        <div className="image-container" style={{borderRadius:'20%',border:'2px solid'}}>
           <img src={home1} alt="Client Impact" className="zoom-image auto-hover" />
         </div>
         <div style={{ flex: '1' }}>
@@ -254,23 +258,26 @@ function Home() {
   </div>
 
 
-            {/* Middle Section 2 */}
-    <div id="main-section" className="landing-page-main mid-section dark-theme ">
-      <div className="left-aligned" style={{ paddingTop: '50px' }}> {/* Adding padding from the top */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* Centering content */}
-          <div style={{ flex: '1', textAlign: 'center' }}> {/* Centering text */}
-            <div className='text' style={{color:'white'}}>
-              <h4><b>OUR APPROACH</b></h4>
-              <h1><b>Your journey is our journey</b></h1>
-              <span>Discover how we can help your business design and chart the best path forward.</span>
-            </div>
-          </div>
-          <div style={{ flex: '1' }}> {/* Aligning image to the center */}
-            <img src={home2} alt="Client Impact" className="zoom-image auto-hover1" />
-          </div>
+    {/* Mid Section */}
+    <div id="main-section1"  className="landing-page-main mid-section about dark-theme" >
+    <div className="left-aligned">
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="image-container" style={{borderRadius:'20%',border:'2px solid'}}>
+          <img src={home2} alt="Client Impact" className="zoom-image auto-hover" />
         </div>
-      </div>
-    </div>
+        <div style={{ flex: '1' }}>
+          <div style={{color:'white'}}>
+            <h4 ><b>OUR APPROACH</b></h4>
+            <h1><b>Your journey is our journey</b></h1>
+            <span>Discover how we can help your business design and chart the best path forward.</span>
+          </div>
+         
+        </div>
+      </div>   
+       </div>
+  </div>
+
+
 
    
    
@@ -363,9 +370,12 @@ function Home() {
       <div class="container">
         <div class="row">
           <div class="footer-col">
-            <p style={{ color: "white" }}>&copy; <span style={{ whiteSpace: 'nowrap' }}>{new Date().getFullYear()} NyKinSky & Company. All rights reserved.</span></p>
+            <p style={{ color: "white" }}> &copy; <span style={{ whiteSpace: 'nowrap' }}>{new Date().getFullYear()} NyKinSky & Company. All rights reserved.</span></p>
+            <p style={{ marginBottom: 0 ,color:'white',margi:'auto'}}>| Design by <a href="https://www.linkedin.com/in/jay-panchal47/" style={{ color: "skyblue", textDecoration: "underline" }} target="_blank" rel="noopener noreferrer">Jay Panchal</a> |</p>
           </div>
         </div>
+
+      
       </div>
  </footer>
         </div>

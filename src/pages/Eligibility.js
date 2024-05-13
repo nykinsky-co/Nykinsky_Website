@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import logo from "../Assets/images/NyK.png"; // Import your logo image
+import logo from "../Assets/images/nykinsky-logo.png"; // Import your logo image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -96,7 +96,7 @@ const [message, setMessage] = useState('');
         <nav className='nav1 navbar-scrolled' style={{ visibility: visible ? 'visible' : 'hidden', backgroundColor:'#312f36',position: 'fixed', width: '100%', zIndex: '1000' }}>
       <div className="wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="logo" onClick={handleLogoClick}>
-          <img src={logo} alt="NyKinSky Logo" className="logo-image" style={{ width: '80px', height: 'auto', paddingTop: '10px', cursor: 'pointer' }} />
+          <img src={logo} alt="NyKinSky Logo" className="logo-image" style={{ width: '250px', height: 'auto', paddingTop: '10px', cursor: 'pointer' }} />
         </div>
         <input type="radio" name="slider" id="menu-btn" />
         <input type="radio" name="slider" id="close-btn" />

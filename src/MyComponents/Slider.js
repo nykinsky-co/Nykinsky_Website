@@ -113,15 +113,13 @@ const Slider = () => {
    
   </div>
   
-  <div className="about-image">
-    {/*<img src={slider2} alt="About Image" />*/}
-  </div>
+  
 </section>
         
 
      {/* wht we do section*/}
      
-     <section className="menu">
+     <section className="menu" style={{backgroundColor:'#111111'}}>
   <h2>WHAT WE DO</h2>
   <h5 style={{color:'white'}}>Real transformation demands hard work, persistence, and the right tools for the job. 
     For over 14 years, we've redefined craftsmanship and shared our expertise to help our clients succeed.</h5>

@@ -30,6 +30,8 @@ nav .wrapper{
 .wrapper .logo {
  padding-left: 100px;
  padding-bottom: 15px;
+
+
 }
 .wrapper .nav-links{
   display: inline-flex;
@@ -182,7 +184,7 @@ nav .wrapper{
 
 @media screen and (max-width: 970px) {
   .logo-image {
-    width: 60px; /* Adjust size for medium screens */
+    width: 150px; /* Adjust size for medium screens */
   }
   
   .wrapper .btn{
@@ -335,8 +337,10 @@ nav{
   padding-Top: 5px;
 }
 .logo{
-  width: 80px; /* Adjust size for medium screens */
+  width: 150px;
+  height: auto; /* Adjust size for medium screens */
 }
+
 
 .carousel {
   width: 100%;
@@ -367,8 +371,8 @@ nav{
 }
 @media only screen and (max-width: 576px) {
   .logo{
-      width: 70px; /* Adjust size for small screens */
-      padding-right: 20px;
+      width: 150px; /* Adjust size for small screens */
+      padding-right: 40px;
       padding-top: 20px;
      
   }
