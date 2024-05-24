@@ -371,7 +371,7 @@ function Home() {
         <div class="row">
           <div class="footer-col">
             <p style={{ color: "white" }}> &copy; <span style={{ whiteSpace: 'nowrap' }}>{new Date().getFullYear()} NyKinSky & Company. All rights reserved.</span></p>
-            <p style={{ marginBottom: 0 ,color:'white',margi:'auto'}}>| Design by <a href="https://www.linkedin.com/in/jay-panchal47/" style={{ color: "skyblue", textDecoration: "underline" }} target="_blank" rel="noopener noreferrer">Jay Panchal</a> |</p>
+           
           </div>
         </div>
 
